@@ -35,3 +35,7 @@ done
 ```
 `./init.sh O`  
 creates folders from A to O with A.py and copies mk.sh and run.sh
+
+**TIPS**
+------------------
+- Analyze time complexity. According to given range, given time limit and memory limit, maximize loop if necessary
