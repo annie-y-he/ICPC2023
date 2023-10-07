@@ -41,7 +41,7 @@ for i in range(0, I):
   cc = int(s.split()[2])
   T[r-1][c-1] = cc
 
-def go(S, I, N, T, sol, stack, F):
+def solve(S, I, N, T, sol, stack, F):
   for i in range(0, len(T) - 1):
     for j in range(0, len(T[i])):
       group = [T[i][j], T[i+1][j], T[i+1][j+1]]
@@ -90,7 +90,7 @@ def go(S, I, N, T, sol, stack, F):
               raise
       except:
         F += 1
-        sol = go(S, I, N, T, sol, stack, F)
+        sol = solve(S, I, N, T, sol, stack, F)
         print("revert")
         F = tmpF
         T = copy.deepcopy(tmp)
@@ -101,7 +101,7 @@ for t in T:
   print(t)
 print()
 
-sol = go(S, I, N, T, sol, stack, F)
+sol = solve(S, I, N, T, sol, stack, F)
 for t in T:
   print(t)
 print()
