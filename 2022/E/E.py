@@ -1,0 +1,5 @@
+inStr = input()
+D = float(inStr().split()[0])
+S = float(inStr().split()[1])
+r = float(inStr().split()[2])
+O = float(inStr().split()[3])

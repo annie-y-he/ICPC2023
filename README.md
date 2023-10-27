@@ -119,6 +119,13 @@ def permutation(n, k):
   return result
 ```
 - Breadth-first search
+- Run time report
+```py
+import time
+start_time = time.time()
+runtime = time.time() - start_time
+print(f"Runtime: {runtime} seconds")
+```
 
 #### Graph Algorithms:
 Depth-First Search (DFS) and Breadth-First Search (BFS)  
@@ -179,3 +186,27 @@ Chinese Remainder Theorem
 Two-pointers technique  
 Inclusion-Exclusion principle  
 Pigeonhole principle  
+
+```py
+def polygon_centroid(points):
+  n = len(points)
+  if n == 0:
+    return None
+  
+  # Ensure the polygon is closed by adding the start point to the end of the list.
+  points.append(points[0])
+  
+  # Calculate signed polygon area
+  A = sum(x0*y1 - x1*y0 for ((x0, y0), (x1, y1)) in zip(points, points[1:])) / 2.0
+
+  # Calculate centroid coordinates
+  Cx = sum((x0 + x1) * (x0*y1 - x1*y0) for ((x0, y0), (x1, y1)) in zip(points, points[1:])) / (6*A)
+  Cy = sum((y0 + y1) * (x0*y1 - x1*y0) for ((x0, y0), (x1, y1)) in zip(points, points[1:])) / (6*A)
+  
+  return (Cx, Cy)
+
+# Example
+points = [(0, 0), (1, 0), (1, 1), (0, 1)]
+print(polygon_centroid(points))  # Output: (0.5, 0.5)
+
+```
