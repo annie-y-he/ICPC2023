@@ -6,26 +6,33 @@ for ino in ./*; do
     q="${dir:0:1}"
     echo "#!/usr/bin/python3" >"$ino/$q.py"
     chmod 777 "$ino/$q.py"
+    rm "$ino/test.sh"
 cat >>"$ino/test.sh" <<EOF
 #!/bin/bash
 for test in *.in; do
   name=\$(basename "\$test" .in)
-  ./\$q.py <"\$name.in" >"\$name.txt"
   echo "TEST \$name: "
+  ./$q.py <"\$name.in" >"\$name.txt"
   cat "\$name.txt"
   echo "DIFF \$name: "
   diff "\$name.txt" "\$name.ans"
   echo \$?
 done
+for test in *.interaction; do
+  name=\$(basename "\$test" .interaction)
+  echo "TEST \$name: "
+  ./$q.py <"\$name.interaction"
+done
 EOF
     chmod 777 "$ino/test.sh"
+    rm "$ino/Makefile"
 cat >>"$ino/Makefile" <<EOF
 test:
-\t./test.sh
+	./test.sh
 run:
-\t./$p.py
+	./$q.py
 pdf:
-\tevince $dir.pdf
+	evince $dir.pdf
 EOF
   fi
 done

@@ -1,9 +1,6 @@
-for test in *.in; do
-  name=$(basename "$test" .in)
-  ./$q.py <"$name.in" >"$name.txt"
-  echo "TEST $name: "
-  cat "$name.txt"
-  echo "DIFF $name: "
-  diff "$name.txt" "$name.ans"
-  echo $?
-done
+test:
+	./test.sh
+run:
+	./G.py
+pdf:
+	evince G-TriLink.pdf
